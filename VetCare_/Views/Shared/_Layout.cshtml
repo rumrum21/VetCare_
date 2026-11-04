@@ -1,0 +1,96 @@
+﻿
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - VetCare</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- SOL MENÜ -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">🐾</span>
+                <span>VetCare</span>
+            </div>
+
+            <div class="menu-title">ANA MENÜ</div>
+
+            <nav class="menu">
+                <a asp-controller="Home" asp-action="Index" class="menu-item active">
+                    <span>🏠</span> Anasayfa
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span>👥</span> Hayvan Sahipleri
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span>🐶</span> Hayvan Kayıtları
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span>📅</span> Randevular
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span>🩺</span> Muayeneler
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span>💉</span> Aşı Takibi
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span>💊</span> İlaç ve Stok
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span>📋</span> Sağlık Karnesi
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span>🐾</span>
+                <div>
+                    <strong>VetCare</strong>
+                    <small>Veteriner Otomasyonu</small>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ANA İÇERİK -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <h5>Veteriner Klinik Yönetimi</h5>
+                    <small>VetCare Yönetim Paneli</small>
+                </div>
+
+                <div class="user-info">
+                    <span>👩‍⚕️</span>
+                    <div>
+                        <strong>Yönetici</strong>
+                        <small>Admin</small>
+                    </div>
+                </div>
+            </header>
+
+            <section class="page-content">
+                @RenderBody()
+            </section>
+
+        </main>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
