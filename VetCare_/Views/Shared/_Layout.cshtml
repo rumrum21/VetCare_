@@ -27,21 +27,25 @@
                     <span>🏠</span> Anasayfa
                 </a>
 
-                <a href="#" class="menu-item">
+                <a asp-controller="Owners"
+                   asp-action="Index"
+                   class="menu-item">
                     <span>👥</span> Hayvan Sahipleri
                 </a>
-
-                <a href="#" class="menu-item">
-                    <span>🐶</span> Hayvan Kayıtları
+                
+                <a asp-controller="Pets" 
+                   asp-action="Index"
+                   class="menu-item">
+                    <span>🐾</span> Hayvan Kayıtları
                 </a>
 
-                <a href="#" class="menu-item">
+              
+                <a asp-controller="Muayeneler"
+                   asp-action="Index"
+                   class="menu-item">
                     <span>📅</span> Randevular
                 </a>
 
-                <a href="#" class="menu-item">
-                    <span>🩺</span> Muayeneler
-                </a>
 
                 <a href="#" class="menu-item">
                     <span>💉</span> Aşı Takibi

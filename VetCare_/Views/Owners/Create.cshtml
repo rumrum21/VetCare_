@@ -1,0 +1,75 @@
+﻿@model VetCare.Models.Owner
+
+@{
+    ViewData["Title"] = "Yeni Hayvan Sahibi";
+}
+
+<div class="mb-4">
+    <h2>Yeni Hayvan Sahibi Ekle</h2>
+    <p class="text-muted">
+        Hayvan sahibinin bilgilerini aşağıdaki formdan doldurabilirsiniz.
+    </p>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+
+        <form asp-controller="Owners" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="FullName" class="form-label">
+                    Ad Soyad
+                </label>
+                <input asp-for="FullName" class="form-control"
+                       placeholder="Ad ve soyad giriniz" />
+                <span asp-validation-for="FullName"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label">
+                    Telefon Numarası
+                </label>
+                <input asp-for="Phone" class="form-control"
+                       placeholder="05XX XXX XX XX" />
+                <span asp-validation-for="Phone"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">
+                    E-posta
+                </label>
+                <input asp-for="Email" class="form-control"
+                       placeholder="ornek@mail.com" />
+                <span asp-validation-for="Email"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Address" class="form-label">
+                    Adres
+                </label>
+                <textarea asp-for="Address" class="form-control"
+                          rows="3"
+                          placeholder="Adres bilgisi giriniz"></textarea>
+                <span asp-validation-for="Address"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">
+                    Kaydet
+                </button>
+
+                <a asp-controller="Owners" asp-action="Index"
+                   class="btn btn-outline-secondary">
+                    İptal
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+</div>

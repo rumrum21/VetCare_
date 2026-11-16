@@ -1,0 +1,100 @@
+﻿@model IEnumerable<VetCare.Models.Owner>
+
+@{
+    ViewData["Title"] = "Hayvan Sahipleri";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2>Hayvan Sahipleri</h2>
+        <p class="text-muted">Kayıtlı hayvan sahiplerini buradan yönetebilirsiniz.</p>
+    </div>
+    <form asp-controller="Owners" asp-action="Index" method="get"
+          class="d-flex gap-2 mb-3">
+
+        <input type="text"
+               name="search"
+               class="form-control"
+               placeholder="Ad soyad veya telefon numarası ara..." />
+
+        <button type="submit" class="btn btn-primary">
+            Ara
+        </button>
+
+    </form>
+    <a asp-controller="Owners"
+       asp-action="Create"
+       class="btn btn-primary">
+        + Yeni Sahip Ekle
+    </a>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+
+        <h5 class="mb-3">Kayıtlı Sahipler</h5>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Numara</th>
+                        <th>Ad Soyad</th>
+                        <th>Telefon</th>
+                        <th>E-posta</th>
+                        <th>Adres</th>
+                        <th>İşlemler</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var owner in Model)
+                    {
+                        <tr>
+                            <td>@owner.Id</td>
+                            <td>@owner.FullName</td>
+                            <td>@owner.Phone</td>
+                            <td>@owner.Email</td>
+                            <td>@owner.Address</td>
+
+                            <td>
+                                <div class="d-flex gap-2">
+
+                                    <a asp-controller="Owners"
+                                       asp-action="Edit"
+                                       asp-route-id="@owner.Id"
+                                       class="btn btn-sm btn-outline-primary">
+                                        Düzenle
+                                    </a>
+
+                                    <form asp-controller="Owners"
+                                          asp-action="Delete"
+                                          asp-route-id="@owner.Id"
+                                          method="post"
+                                          onsubmit="return confirm('Bu hayvan sahibini silmek istediğinize emin misiniz?');">
+
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            Sil
+                                        </button>
+
+                                    </form>
+
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <p class="text-muted text-center mt-3">
+                Henüz kayıtlı hayvan sahibi bulunmuyor.
+            </p>
+        }
+
+    </div>
+</div>

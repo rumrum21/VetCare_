@@ -1,0 +1,102 @@
+﻿@model VetCare.Models.Muayene
+
+@{
+    ViewData["Title"] = "Yeni Muayene Ekle";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Yeni Muayene Kaydı</h4>
+                </div>
+
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="PetId" class="form-label">
+                                Hayvan Seç
+                            </label>
+
+                            <select asp-for="PetId" class="form-select">
+                                <option value="">Hayvan seçiniz</option>
+
+                                @foreach (var pet in ViewBag.Pets)
+                                {
+                                    <option value="@pet.Id">
+                                        @pet.Name - @(pet.Owner?.FullName ?? "Sahibi yok")
+                                    </option>
+                                }
+                            </select>
+
+                            <span asp-validation-for="PetId"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MuayeneTarihi" class="form-label">
+                                Muayene Tarihi
+                            </label>
+
+                            <input asp-for="MuayeneTarihi"
+                                   type="date"
+                                   class="form-control" />
+
+                            <span asp-validation-for="MuayeneTarihi"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MuayeneSaati" class="form-label">
+                                Muayene Saati
+                            </label>
+
+                            <input asp-for="MuayeneSaati"
+                                   type="time"
+                                   class="form-control" />
+
+                            <span asp-validation-for="MuayeneSaati"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="YapilanIslem" class="form-label">
+                                Yapılan İşlem
+                            </label>
+
+                            <textarea asp-for="YapilanIslem"
+                                      class="form-control"
+                                      rows="4"
+                                      placeholder="Örneğin: Genel kontrol ve aşı uygulaması..."></textarea>
+
+                            <span asp-validation-for="YapilanIslem"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                Geri Dön
+                            </a>
+
+                            <button type="submit" class="btn btn-primary">
+                                Muayeneyi Kaydet
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

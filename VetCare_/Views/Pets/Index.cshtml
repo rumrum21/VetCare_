@@ -1,0 +1,85 @@
+﻿@using System.Linq
+@model IEnumerable<VetCare.Models.Pet>
+
+@{
+    ViewData["Title"] = "Hayvan Kayıtları";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2>Hayvan Kayıtları</h2>
+        <p class="text-muted">Kliniğe kayıtlı hayvanları görüntüleyin.</p>
+    </div>
+
+    <a asp-controller="Pets" asp-action="Create"
+       class="btn btn-primary">
+        + Yeni Hayvan Ekle
+    </a>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body">
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Numara</th>
+                        <th>Hayvan Adı</th>
+                        <th>Tür</th>
+                        <th>Irk</th>
+                        <th>Cinsiyet</th>
+                        <th>Doğum Tarihi</th>
+                        <th>Sahibi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var pet in Model)
+                    {
+                        <tr>
+                            <td>@pet.Id</td>
+                            <td>@pet.Name</td>
+                            <td>@pet.Species</td>
+                            <td>@pet.Breed</td>
+                            <td>@pet.Gender</td>
+                            <td>@(pet.BirthDate?.ToString("dd.MM.yyyy") ?? "-")</td>
+                            <td>
+                                @(pet.Owner?.FullName ?? "Sahip bulunamadı")
+                            </td>
+                            <td>
+                                <a asp-controller="Pets"
+                                   asp-action="Edit"
+                                   asp-route-id="@pet.Id"
+                                   class="btn btn-sm btn-outline-primary">
+                                    Düzenle
+                                </a>
+
+                                <form asp-controller="Pets"
+                                      asp-action="Delete"
+                                      asp-route-id="@pet.Id"
+                                      method="post"
+                                      class="d-inline"
+                                      onsubmit="return confirm('Bu hayvan kaydını silmek istediğinize emin misiniz?');">
+                                    <button type="submit"
+                                            class="btn btn-sm btn-outline-danger">
+                                        Sil
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <p class="text-center text-muted mt-3">
+                Henüz hayvan kaydı bulunmuyor.
+            </p>
+        }
+
+    </div>
+</div>

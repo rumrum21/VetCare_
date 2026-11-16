@@ -1,0 +1,81 @@
+﻿@model VetCare.Models.Pet
+
+@{
+    ViewData["Title"] = "Hayvan Bilgilerini Düzenle";
+}
+
+<div class="mb-4">
+    <h2>Hayvan Bilgilerini Düzenle</h2>
+    <p class="text-muted">Kayıtlı hayvanın bilgilerini güncelleyebilirsiniz.</p>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+
+        <form asp-controller="Pets" asp-action="Edit"
+              asp-route-id="@Model.Id" method="post">
+
+            <input type="hidden" asp-for="Id" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Hayvan Adı</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Species" class="form-label">Tür</label>
+                <select asp-for="Species" class="form-select">
+                    <option value="Kedi">Kedi</option>
+                    <option value="Köpek">Köpek</option>
+                    <option value="Kuş">Kuş</option>
+                    <option value="Diğer">Diğer</option>
+                </select>
+                <span asp-validation-for="Species" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Breed" class="form-label">Irk</label>
+                <input asp-for="Breed" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Gender" class="form-label">Cinsiyet</label>
+                <select asp-for="Gender" class="form-select">
+                    <option value="">Seçiniz</option>
+                    <option value="Erkek">Erkek</option>
+                    <option value="Dişi">Dişi</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="BirthDate" class="form-label">Doğum Tarihi</label>
+                <input asp-for="BirthDate" type="date" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="OwnerId" class="form-label">Hayvan Sahibi</label>
+                <select asp-for="OwnerId"
+                        class="form-select"
+                        asp-items="@(new Microsoft.AspNetCore.Mvc.Rendering.SelectList(ViewBag.Owners, "Id", "FullName"))">
+                    <option value="">Sahip seçiniz</option>
+                </select>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">
+                    Değişiklikleri Kaydet
+                </button>
+
+                <a asp-controller="Pets" asp-action="Index"
+                   class="btn btn-outline-secondary">
+                    İptal
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+</div>

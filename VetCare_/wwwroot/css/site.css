@@ -358,7 +358,7 @@ body {
     border-radius: 20px;
 }
 
-/* AŞI HATIRLATMuuuuuAwewewrLARI */
+/* AŞI HATIRLAT */
 .vaccine-item {
     display: flex;
     align-items: center;
@@ -394,7 +394,7 @@ body {
     margin-top: 5px;
 }
 
-/* RESPONSIVE */
+/* görünen sayfanın telefonda taşmasını ve kartların birbirine girmesini önlüyormuş */
 @media (max-width: 1100px) {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
